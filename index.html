@@ -165,7 +165,7 @@
 
     <!-- ================= HEADER ================= -->
     <header class="profile" id="top">
-      <!-- EDIT ME: drop a square photo at assets/profile.jpg (or delete this <img>) -->
+      <!-- Profile photo. Swap the src (e.g. assets/profile.jpg) to change it. -->
       <img class="photo" src="assets/profile_bromo.jpg" alt="Alan Li"
            onerror="this.style.display='none'">
 
@@ -177,8 +177,8 @@
         </p>
 
         <nav class="links">
-          <!-- EDIT ME: replace with your institutional email -->
-          <a href="mailto:alanli@cs.utexas.edu">Email</a>
+          <!-- Email is assembled by JS at the bottom of the page so scrapers can't harvest it -->
+          <a class="email" href="#" data-user="alanli" data-domain="cs.utexas.edu">Email</a>
           <a href="assets/cv.pdf">CV</a>
           <a href="https://scholar.google.com/citations?hl=en&user=VR187QEAAAAJ">Google&nbsp;Scholar</a>
           <a href="https://github.com/alan2326">GitHub</a>
@@ -229,7 +229,7 @@
       <h2>Publications</h2>
       <p style="font-size:0.9rem;color:var(--muted);margin-top:-4px">
         <!-- EDIT ME / delete: helpful convention below -->
-        Author names in <span style="color:var(--accent)">orange</span> are me. See also my
+        Author names in <span style="color:var(--accent)">blue</span> are me. See also my
         <a href="https://scholar.google.com/citations?hl=en&user=VR187QEAAAAJ">Google Scholar</a>.
       </p>
 
@@ -293,5 +293,13 @@
     </footer>
 
   </div>
+
+  <script>
+    // Assemble the email link at runtime so address harvesters (which don't run
+    // JavaScript) can't scrape it from the page source.
+    document.querySelectorAll("a.email").forEach(function (a) {
+      a.href = "mailto:" + a.dataset.user + "@" + a.dataset.domain;
+    });
+  </script>
 </body>
 </html>
